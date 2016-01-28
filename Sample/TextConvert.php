@@ -23,11 +23,21 @@ FileUtil::FileReadOrExecute($testFile, $callback, $params, $contents);
 // 分析して、値を取得
 // TODO:ここを入れ子にしたり複数回実行させたりしたい
 $converter = new PHPUtil\TextConverter($contents);
-$pattern = '<p class="ttl">'
-		. '<a href="{%}" onmousedown="this.href='."'".'{%}'."'".'">{%}<span class="icPhoto">写真</span><span class="icNew">new</span></a></p>';
-$matches = $converter->match_all($pattern);
+$patterns = array(
+	'<{%} class="ttl"><a href="{%}" onmousedown="this.href='."'".'{%}'."'".'">{%}</a></{%}>',
+);
+$matches = array();
+foreach($patterns as $pattern) {
+	$matches[] = $converter->match_all($pattern);
+}
 
 // カスタムして出力
-FileUtil::save($convertFile, serialize($matches));
-var_dump($matches);
+FileUtil::save($convertFile, serialize($matches[0]));
+var_dump($matches[0]);
+
+
+foreach($matches[0] as $match) {
+	echo $match[4] . "\n";
+}
+
 
