@@ -1,6 +1,6 @@
 <?php
-include "../TextConverter/TextConverter.php";
-include "../FileUtil/FileUtil.php";
+include "../TextConverter.php";
+include "../FileUtil.php";
 
 function webGetAndWrite($url, $path, &$contents)
 {

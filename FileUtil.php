@@ -1,4 +1,4 @@
-<?php
+<?php namespace PHPUtil;
 
 class FileUtil {
 
@@ -48,6 +48,5 @@ class FileUtil {
 		}
 		return true;
 	}
-
 }
 
