@@ -2,6 +2,8 @@
 include "../FileUtil.php";
 include "../Imagemaker.php";
 
+use PhpUtil\FileUtil;
+
 // 画像保存用ディレクトリ作成
 if(!FileUtil::create_directory_with_check("img")) {
 	exit();

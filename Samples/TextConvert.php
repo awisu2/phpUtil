@@ -2,6 +2,9 @@
 include "../TextConverter.php";
 include "../FileUtil.php";
 
+use PhpUtil\FileUtil;
+use PhpUtil\TextConverter;
+
 function webGetAndWrite($url, $path, &$contents)
 {
 	// ディレクトリ作成
@@ -13,7 +16,6 @@ function webGetAndWrite($url, $path, &$contents)
 	//// 存在確認とウェブからの値取得
 	$callback = file_get_contents;
 	$callbackParams = array($url);
-	// TODO:リトライ処理
 	$ret = FileUtil::FileReadOrExecute($path, $callback, $callbackParams, $contents);
 	if(!$ret) {
 		return false;
@@ -25,8 +27,7 @@ function webGetAndWrite($url, $path, &$contents)
 // 分析してファイル保存
 function inspectAndWrite($text, $patterns, $path, &$matches)
 {
-	// TODO:ここを入れ子にしたい
-	$converter = new PHPUtil\TextConverter($text);
+	$converter = new TextConverter($text);
 	$matches = array();
 	foreach($patterns as $pattern) {
 		$matches[] = $converter->match_all($pattern);
