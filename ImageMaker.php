@@ -111,6 +111,13 @@ class ImageMaker
 	{
 		imagedestroy($id);
 	}
+
+	// 線を引く
+	public static function SetLine($id, $rangeInfo, $colorInfo = null)
+	{
+		$color = self::SetColor($id, $colorInfo);
+		return imageline($id, $rangeInfo["x"], $rangeInfo["y"], $rangeInfo["x2"], $rangeInfo["y2"], $color);
+	}
 }
 
 
