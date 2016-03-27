@@ -20,6 +20,12 @@ class ImageMaker
 	{
 		return imagecreatetruecolor($width, $height);
 	}
+    
+    // ベースオブジェクトの作成(png)
+    public static function MakeImageBaseFromPng($path)
+    {
+        return imagecreatefrompng($path);
+    }
 
 	// 画像情報
 	public static function MakeColorInfo($red = 0, $green = 0, $blue = 0)
@@ -118,6 +124,17 @@ class ImageMaker
 		$color = self::SetColor($id, $colorInfo);
 		return imageline($id, $rangeInfo["x"], $rangeInfo["y"], $rangeInfo["x2"], $rangeInfo["y2"], $color);
 	}
+    
+    // サイズ変更
+    // 
+    // IMG_NEAREST_NEIGHBOUR : 最近接補間
+    // IMG_BILINEAR_FIXED : 双直線補間の固定小数点実装
+    // IMG_BICUBIC : 双三次補間
+    // IMG_BICUBIC_FIXED : 双三次補間の固定小数点実装
+    public static function changeSize($id, $width, $height, $mode = IMG_BILINEAR_FIXED)
+    {
+        return imagescale($id, $width, $height, $mode);
+    }
 }
 
 
