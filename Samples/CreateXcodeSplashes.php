@@ -48,17 +48,16 @@ foreach($sizes as $filename => $size )
     
     // portal
     $customId = ImageMaker::changeSize($id, $x, $y, IMG_BICUBIC_FIXED);
-    $textcolor = imagecolorallocate($customId, 0, 0, 255);
-    // $customId = imagestring($customId, 5, 0, 0, "Hello world!", $textcolor);
     $name = $filename . "_portal_" . $x . "_" . $y . ".png";
+    ImageMaker::writeText($customId, 5, 10, 10, $name, 0, 0, 255);
     ImageMaker::savefile($customId, $dir . "/" . $name);
     echo "saved : " . $name . "\n";
     ImageMaker::imagedestroy($customId);
 
     // landscape
     $customId = ImageMaker::changeSize($id, $y, $x, IMG_BICUBIC_FIXED);
-    // $customId = imagestring($customId, 5, 0, 0, "Hello world!", $textcolor);
     $name = $filename . "_landscape_" . $y . "_" . $x . ".png";
+    ImageMaker::writeText($customId, 5, 10, 10, $name, 0, 0, 255);
     ImageMaker::savefile($customId, $dir . "/" . $name);
     echo "saved : " . $name . "\n";
     ImageMaker::imagedestroy($customId);

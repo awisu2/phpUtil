@@ -135,6 +135,24 @@ class ImageMaker
     {
         return imagescale($id, $width, $height, $mode);
     }
+    
+    // テキスト
+    // 
+    // $id   : 画像resource
+    // $font : latin2(組み込みフォント)は、1, 2, 3, 4, 5 のいずれか
+    //     数字が大きなほうが、より大きいフォントに対応します
+    //     あるいは imageloadfont() で登録したフォントの識別子のいずれか。
+    // $x    : x座標
+    // $y    : y座標
+    // $text : 文字列
+    // $r    : 赤(0-255)
+    // $g    : 緑(0-255)
+    // $b    : 青(0-255)
+    public static function writeText($id, $font, $x, $y, $text, $r, $g, $b)
+    {
+        $color = imagecolorallocate($id, $r, $g, $b);
+        imagestring($id, $font, $x, $y, $text, $color);
+    }
 }
 
 
