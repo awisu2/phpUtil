@@ -49,7 +49,7 @@ foreach($sizes as $filename => $size )
     // portal
     $customId = ImageMaker::changeSize($id, $x, $y, IMG_BICUBIC_FIXED);
     $name = $filename . "_portal_" . $x . "_" . $y . ".png";
-    ImageMaker::writeText($customId, 5, 10, 10, $name, 0, 0, 255);
+    ImageMaker::writeText($customId, 100, ($x / 2) - 100, ($y / 2) - 10, $name, 255, 0, 0);
     ImageMaker::savefile($customId, $dir . "/" . $name);
     echo "saved : " . $name . "\n";
     ImageMaker::imagedestroy($customId);
@@ -57,7 +57,7 @@ foreach($sizes as $filename => $size )
     // landscape
     $customId = ImageMaker::changeSize($id, $y, $x, IMG_BICUBIC_FIXED);
     $name = $filename . "_landscape_" . $y . "_" . $x . ".png";
-    ImageMaker::writeText($customId, 5, 10, 10, $name, 0, 0, 255);
+    ImageMaker::writeText($customId, 100, ($y / 2) - 100, ($x / 2) - 10, $name, 255, 0, 0);
     ImageMaker::savefile($customId, $dir . "/" . $name);
     echo "saved : " . $name . "\n";
     ImageMaker::imagedestroy($customId);
