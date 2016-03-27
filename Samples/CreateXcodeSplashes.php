@@ -40,6 +40,7 @@ $sizes = array(
     "iPadRetina" => array(1536, 2048),
 );
 
+$i = 0;
 foreach($sizes as $filename => $size )
 {
     $x = $size[0];
@@ -47,14 +48,21 @@ foreach($sizes as $filename => $size )
     
     // portal
     $customId = ImageMaker::changeSize($id, $x, $y, IMG_BICUBIC_FIXED);
-    ImageMaker::savefile($customId, $dir . "/" . $filename . "_portal_" . $x . "_" . $y . ".png");
+    $textcolor = imagecolorallocate($customId, 0, 0, 255);
+    // $customId = imagestring($customId, 5, 0, 0, "Hello world!", $textcolor);
+    $name = $filename . "_portal_" . $x . "_" . $y . ".png";
+    ImageMaker::savefile($customId, $dir . "/" . $name);
+    echo "saved : " . $name . "\n";
     ImageMaker::imagedestroy($customId);
 
     // landscape
     $customId = ImageMaker::changeSize($id, $y, $x, IMG_BICUBIC_FIXED);
-    ImageMaker::savefile($customId, $dir . "/" . $filename . "_landscape_" . $y . "_" . $x . ".png");
+    // $customId = imagestring($customId, 5, 0, 0, "Hello world!", $textcolor);
+    $name = $filename . "_landscape_" . $y . "_" . $x . ".png";
+    ImageMaker::savefile($customId, $dir . "/" . $name);
+    echo "saved : " . $name . "\n";
     ImageMaker::imagedestroy($customId);
 }
 
 ImageMaker::imagedestroy($id);
-
+echo "executed " . $argv[0] . "\n";
