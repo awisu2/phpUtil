@@ -131,7 +131,7 @@ class ImageMaker
     // IMG_BILINEAR_FIXED : 双直線補間の固定小数点実装
     // IMG_BICUBIC : 双三次補間
     // IMG_BICUBIC_FIXED : 双三次補間の固定小数点実装
-    public static function changeSize($id, $width, $height, $mode = IMG_BILINEAR_FIXED)
+    public static function changeSize($id, $width, $height, $mode = IMG_BICUBIC_FIXED)
     {
         return imagescale($id, $width, $height, $mode);
     }

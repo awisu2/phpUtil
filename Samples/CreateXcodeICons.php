@@ -31,13 +31,14 @@ $id = ImageMaker::MakeImageBaseFromPng($filePath);
 
 // 保存(portal)
 $sizes = array(
-    "MobileSplashScreen" => array(320, 480),
-    "iPhone3.5\"Retina" => array(640, 960),
-    "iPhone4\"Retina" => array(640, 1136),
-    "iPhone4.7\"Retina" => array(750, 1334),
-    "iPhone5.5\"Retina" => array(1242, 2208),
-    "iPad" => array(768, 1024),
-    "iPadRetina" => array(1536, 2048),
+    "icon180" => array(180, 180),
+    "icon152" => array(152, 152),
+    "icon144" => array(144, 144),
+    "icon120" => array(120, 120),
+    "icon114" => array(114, 114),
+    "icon76" => array(76, 76),
+    "icon72" => array(72, 72),
+    "icon57" => array(57, 57),
 );
 
 foreach($sizes as $filename => $size )
@@ -47,12 +48,7 @@ foreach($sizes as $filename => $size )
     
     // portal
     $customId = ImageMaker::changeSize($id, $x, $y, IMG_BICUBIC_FIXED);
-    ImageMaker::savefile($customId, $dir . "/" . $filename . "_portal_" . $x . "_" . $y . ".png");
-    ImageMaker::imagedestroy($customId);
-
-    // landscape
-    $customId = ImageMaker::changeSize($id, $y, $x, IMG_BICUBIC_FIXED);
-    ImageMaker::savefile($customId, $dir . "/" . $filename . "_landscape_" . $y . "_" . $x . ".png");
+    ImageMaker::savefile($customId, $dir . "/" . "icon" . $x . "_" . $y . ".png");
     ImageMaker::imagedestroy($customId);
 }
 
