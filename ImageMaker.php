@@ -3,10 +3,10 @@ class ImageMaker
 {
 	const TYPE_PNG = 1;
 
-	public static function MakeSimpleImage($width, $height, $bgColorInfo = null) 
+	public static function MakeSimpleImage($width, $height, $bgColorInfo = null)
 	{
 		$id = self::MakeImageBase($width, $height);
-		
+
 		// 背景色設定
 		if(!self::SetBackgroundColor($id, $bgColorInfo)) {
 			return null;
@@ -20,11 +20,17 @@ class ImageMaker
 	{
 		return imagecreatetruecolor($width, $height);
 	}
-    
+
     // ベースオブジェクトの作成(png)
     public static function MakeImageBaseFromPng($path)
     {
         return imagecreatefrompng($path);
+    }
+
+	// ベースオブジェクトの作成(png)
+    public static function MakeImageBaseFromJpg($path)
+    {
+        return imagecreatefromjpeg($path);
     }
 
 	// 画像情報
@@ -75,7 +81,7 @@ class ImageMaker
 		if(!$rangeInfo) {
 			$rangeInfo = self::MakeRangeInfo();
 		}
-		
+
 		if(!$colorInfo) {
 			$colorInfo = self::MakeColorInfo();
 		}
@@ -88,7 +94,7 @@ class ImageMaker
 	public static function SaveFile($id, $file="IMG.png", $type = self::TYPE_PNG)
 	{
 		$ret = false;
-		
+
 		switch($type) {
 		case self::TYPE_PNG:
 			$ret = imagepng($id, $file);
@@ -124,9 +130,9 @@ class ImageMaker
 		$color = self::SetColor($id, $colorInfo);
 		return imageline($id, $rangeInfo["x"], $rangeInfo["y"], $rangeInfo["x2"], $rangeInfo["y2"], $color);
 	}
-    
+
     // サイズ変更
-    // 
+    //
     // IMG_NEAREST_NEIGHBOUR : 最近接補間
     // IMG_BILINEAR_FIXED : 双直線補間の固定小数点実装
     // IMG_BICUBIC : 双三次補間
@@ -135,9 +141,9 @@ class ImageMaker
     {
         return imagescale($id, $width, $height, $mode);
     }
-    
+
     // テキスト
-    // 
+    //
     // $id   : 画像resource
     // $font : latin2(組み込みフォント)は、1, 2, 3, 4, 5 のいずれか
     //     数字が大きなほうが、より大きいフォントに対応します
@@ -154,6 +160,3 @@ class ImageMaker
         imagestring($id, $font, $x, $y, $text, $color);
     }
 }
-
-
-
